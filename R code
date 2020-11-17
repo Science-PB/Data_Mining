@@ -1,0 +1,72 @@
+#Load libraries
+library(FSA)
+library(dplyr)
+library(magrittr)
+library(rattle)
+library(rpart)
+library(rpart.plot)
+library(RColorBrewer)
+
+#Import Titanic dataset
+titanic<-read.csv("titanic_full_data.csv")
+titanic
+set.seed(123)
+
+#Shuffle Data (1309 observations)
+shuffle <- sample(1:nrow(titanic))
+head(shuffle)
+titanic_shuffle <- titanic[shuffle, ]
+head(titanic_shuffle)
+
+#Clean the data: Remove NA values, drop non-value variables, set variables as factors
+titanic_scrubbed <- titanic_shuffle %>%
+  select(-c(Cabin, Name, PassengerId, Ticket)) %>%
+  mutate(Pclass = factor(Pclass, levels = c(1, 2, 3), labels = c('Upper', 'Middle', 'Lower')),
+         Survived = factor(Survived, levels = c(0, 1), labels = c('Died', 'Survived'))) %>%
+  na.omit()
+glimpse(titanic_scrubbed)
+
+#Split the data (80/20): generate a training and testing set
+train_test_set <- function(data, size = 0.8, train = TRUE) {
+  n_row = nrow(data)
+  total_row = size * n_row
+  train_sample <- 1: total_row
+  if (train == TRUE) {
+    return (data[train_sample, ])}
+  else {return (data[-train_sample, ])}}
+
+titanic_train <- train_test_set(titanic_scrubbed, 0.8, train = TRUE)
+titanic_test <- train_test_set(titanic_scrubbed, 0.8, train = FALSE)
+dim(titanic_train)
+dim(titanic_test)
+
+prop.table(table(titanic_train$Survived))
+prop.table(table(titanic_test$Survived))
+
+#Build Decision Tree Algorithm
+fit <- rpart(Survived~., data = titanic_train, method = 'class')
+fancyRpartPlot(fit)
+
+#Prediction Calculation
+predictions <-predict(fit, titanic_test, type = 'class')
+table_matrix <- table(titanic_test$Survived, predictions)
+table_matrix
+
+accuracy_test <- sum(diag(table_matrix)) / sum(table_matrix)
+print(paste('Accuracy Test', accuracy_test))
+
+#Tuning the Model
+control <- rpart.control(minsplit = 1,
+                         maxdepth = 2,
+                         cp = 0)
+
+accuracy_tune <- function(fit) {
+  predictions <- predict(fit, titanic_test, type = 'class')
+  table_matrix <- table(titanic_test$Survived, predictions)
+  accuracy_test <- sum(diag(table_matrix)) / sum(table_matrix)
+  accuracy_test
+}
+
+tuned_fit <- rpart(Survived~., data = titanic_train, method = 'class', control = control)
+accuracy_tune(tuned_fit)
+fancyRpartPlot(tuned_fit)
