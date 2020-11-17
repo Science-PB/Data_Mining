@@ -40,6 +40,7 @@ elements are pulled into both training and testing sets. The point being to ensu
 randomized to improve predictions. Figure 1 showcases the R functions utilized to shuffle the
 imported titanic dataset. A seed is also performed in order to provide reproducibility.
 
+<img width="564" alt="Screen Shot 2020-11-16 at 8 58 26 PM" src="https://user-images.githubusercontent.com/66921930/99334456-c43fae80-284e-11eb-9e12-4adb5ddf5302.png">
 
 
 After the dataset has been shuffled a level of cleanup needs to occur in order to properly
@@ -52,11 +53,14 @@ there are multiple ways to handle missing values in data mining, since the inten
 decision tree thus showcasing a classification model, the decision is made to omit the missing
 value rows. Finally, data type conversion is done to ensure successful R output. The cleanup of
 the dataset is showcased in Figure 2 as both R code and a glimpse of the output. 
+
+<img width="709" alt="Screen Shot 2020-11-16 at 8 58 52 PM" src="https://user-images.githubusercontent.com/66921930/99334468-c4d84500-284e-11eb-9cea-ef70f64bcba6.png">
+
 With the dataset shuffled and noise eliminated, the model is ready to be split into training
 and testing sets. As mentioned previously, a common practice is to use an 80/20 split. A function is generated in R building the formula to calculate the training data to be 80% of the dataset, else returning a 20% test data set. R coding is provided in Figure 3 to build the training and testing
 sets.
 
-
+<img width="650" alt="Screen Shot 2020-11-16 at 8 59 28 PM" src="https://user-images.githubusercontent.com/66921930/99334487-c6097200-284e-11eb-8559-fed27e42aa4e.png">
 
 
 While not required, an additional step can be taken to test how functions performed in R.
@@ -66,3 +70,4 @@ and 20% as testing from the 8 remaining variables. Going further, Figure 4 also 
 randomization process performed well based on survival. In both the training and testing data
 sets the survival rate is 41% and 40% respectively, showing fair randomization.
 
+<img width="547" alt="Screen Shot 2020-11-16 at 8 59 55 PM" src="https://user-images.githubusercontent.com/66921930/99334496-c6a20880-284e-11eb-9ae4-9e24b0b996b5.png">
