@@ -87,7 +87,7 @@ In order to predict survival in Titanic passengers, the outcome is set to the va
 training set and the method is set to “class” in order to build a classification tree as seen in Figure
 5. The algorithm is then plotted to display the results in Figure 6.
 
-
+<img width="615" alt="Screen Shot 2020-11-16 at 9 02 31 PM" src="https://user-images.githubusercontent.com/66921930/99337035-8abb7300-284f-11eb-8382-e7fbb5706e6c.png">
 
 Mentioned previously, decision trees are made up of a root node, branches and leaf
 nodes. Each node in Figure 6 provides the predicted class, i.e. died or survived, the probability of
@@ -96,7 +96,7 @@ decision tree and in the case of this example provides the overall probability o
 training data set. From the root node, it is discerned that the survival rate of all the observations
 was 41%. The decision tree then starts building in decision branches that result in further nodes.
 
-
+<img width="704" alt="Screen Shot 2020-11-16 at 9 03 05 PM" src="https://user-images.githubusercontent.com/66921930/99337037-8abb7300-284f-11eb-855d-fef681126ddf.png">
 
 The first decision branch from the root node takes into account the “Sex” variable, asking
 whether the passenger was male or female. If the left side of the decision tree is interpreted, the
@@ -126,3 +126,48 @@ calculate the succession rate of the model. Confusion matrixes are a summary of 
 results compared to the actual results within the test dataset (Brownlee, 2016). The R code
 applied, and output can be seen in Figure 7.
 
+<img width="592" alt="Screen Shot 2020-11-16 at 9 04 06 PM" src="https://user-images.githubusercontent.com/66921930/99337038-8b540980-284f-11eb-9299-968afd4acdd7.png">
+
+The results in Figure 7 provide the actual outcomes of the testing data as rows, and the
+predictions as columns. Based on the matrix, the model correctly classified 118 passengers as
+having died, i.e. a true negative, while mistakenly classifying 8 passengers that perished as
+having survived, i.e. a false positive. From a survival standpoint, the predictions successfully
+classified 52 passengers as survivors, a true positive, and mistakenly classified 31 passengers as
+deceased when the actual data notes they survived, i.e. a false negative. From this data the
+accuracy of the model can be tested as seen in Figure 8. With a result of 81% accuracy it can be
+inferred that the model is relatively good.
+
+
+
+
+# Data Mining: Tuning the Model
+
+Many techniques in data mining and predictive analytics focus on improving accuracy in
+predictions. Decision trees are no exception, and the algorithm can be adjusted to fine tune the
+various parameters, in effect “pruning” the tree. Using the rpart.control function in R, minsplit,
+minbucket, maxdepth and cp parameters can be adjusted to improve accuracy. Minsplit sets the
+minimum number of observations in a node before the algorithm performs the split while
+minbucket sets the minimum number of observations in the final leaf (Guru99, 2020). Maxdepth
+sets the maximum depth of any node of the final tree (Guru99, 2020). The final parameter is the
+complexity parameter, or cp, which sets a minimum increase of fit. In the end, this parameter
+“prunes” the model of splits that do not increase by the cp amount.
+The intent is to place controls that increase the accuracy of the model. In the case of the
+Titanic dataset the output would need to result in a value higher than 81%. For this use case the
+minimum number of observations that must exist in a node was set to 1, the minimum number of observations in a terminal as a default is set to the minsplit value divided by 3, the depth of the
+final node was set to 2 and the complexity parameter was set as 0. The R code utilized can be
+found in Figure 9. Running multiple different parameters, the parameters mentioned above were
+found to output the most accurate result.
+
+
+
+Figure 9 also supplies a tuned accuracy algorithm. Modeled after the previous prediction
+algorithm but applying the control parameters. Overall, the accuracy was able to be improved
+marginally to 82%. Running a decision tree on the tuned model it is immediately obvious why
+the term “pruned” is used to explain the process of tuning parameters of a decision tree. While
+the accuracy rating was small the visual packs a larger impact as seen in Figure 10.
+
+
+Three decision branches are all that is left in the new model, the initial off the root node
+and then 2 more node levels as defined by the set maxdepth. Ultimately the consensus is that the
+use of a large number of variables as decision branches to build additional nodes does not
+necessarily lead to a more accurate prediction model.
