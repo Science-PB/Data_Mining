@@ -137,7 +137,7 @@ deceased when the actual data notes they survived, i.e. a false negative. From t
 accuracy of the model can be tested as seen in Figure 8. With a result of 81% accuracy it can be
 inferred that the model is relatively good.
 
-
+<img width="626" alt="Screen Shot 2020-11-16 at 9 08 24 PM" src="https://user-images.githubusercontent.com/66921930/99337336-146b4080-2850-11eb-8846-5b5fedb6587c.png">
 
 
 # Data Mining: Tuning the Model
@@ -158,6 +158,7 @@ final node was set to 2 and the complexity parameter was set as 0. The R code ut
 found in Figure 9. Running multiple different parameters, the parameters mentioned above were
 found to output the most accurate result.
 
+<img width="662" alt="Screen Shot 2020-11-16 at 9 08 54 PM" src="https://user-images.githubusercontent.com/66921930/99337337-146b4080-2850-11eb-9964-d8d5be317ebf.png">
 
 
 Figure 9 also supplies a tuned accuracy algorithm. Modeled after the previous prediction
@@ -167,7 +168,74 @@ the term “pruned” is used to explain the process of tuning parameters of a d
 the accuracy rating was small the visual packs a larger impact as seen in Figure 10.
 
 
+<img width="702" alt="Screen Shot 2020-11-16 at 9 09 16 PM" src="https://user-images.githubusercontent.com/66921930/99337339-146b4080-2850-11eb-9c67-502b8e201733.png">
+
 Three decision branches are all that is left in the new model, the initial off the root node
 and then 2 more node levels as defined by the set maxdepth. Ultimately the consensus is that the
 use of a large number of variables as decision branches to build additional nodes does not
 necessarily lead to a more accurate prediction model.
+
+# Conclusion
+
+Decision trees are a predictive machine learning model that maps observations on a
+variable to various conclusions (Theodoridis & Koutroumbas, 2009). Classification trees which
+focus on categorization are a main technique used in data mining. Due to their simplistic nature
+and easily consumable format it is easy to see why decision trees have been adopted into many
+
+different types of statistical scenarios. Outside of being easily comprehensible through their if-
+then rule structure, decision trees are one of the most efficient ways to identify significant
+
+variables and relationships between variables, regardless of data type, with a very low touch
+application process from users. As with any statistical method however, there are potential
+disadvantages.
+When building decision trees, it is important to take the necessary pruning steps in order
+to avoid overfitting. Overly complex trees are a significant risk without constraints and
+parameters put in place. Instability due to small variations in the data is also a concern as the
+result can output a completely different tree (Brid, 2018). Another main concern revolves around
+bias, which is generated when the data set is not properly balanced before it is fit to the tree.
+Taking necessary steps and precautions when setting up a dataset and applying
+parameters can lead to higher prediction accuracy, ensuring a more reliable model. Shuffling the
+data to ensure randomization, ensuring the training set is sufficiently sized by proportioning the
+data split correctly, i.e. 80/20, running accuracy formulas and then tuning parameters to prune
+decision trees thus creating simpler and more accurate models by eliminating excessive noise are
+all critical steps to take. By taking certain measures a user can instill confidence into their data
+mining methods and outputted predictions.
+
+# References
+
+Guru99. (2020). Decision Tree in R with Example. Guru99. Retrieved from:
+https://www.guru99.com/r-decision-trees.html#1
+Expert System. (2016, Dec 2). Data mining and predictive analytics: What is the difference?
+
+Expert System. Retrieved from: https://expertsystem.com/data-mining-predictive-analytics-
+difference/#:~:text=Predictive%20analytics%20and%20data%20mining,patterns%20and%20rela
+
+tionships%20from%20data.
+Tutorials Point. (2020). Data Mining – Decision Tree Induction. Tutorials Point. Retrieved from:
+https://www.tutorialspoint.com/data_mining/dm_dti.htm#:~:text=Data%20Mining%20%2D%20
+
+Decision%20Tree%20Induction,tree%20is%20the%20root%20node.
+Wegman, E. and Solka, J. (2005). Statistical Data Mining. Handbook of Statistics, 1-46.
+https://www.sciencedirect.com/science/article/pii/S0169716104240019
+
+Oracle. (2017). Decision Tree. Data Mining Concepts. Oracle. Retrieved from:
+https://docs.oracle.com/database/121/DMCON/GUID-14DE1A88-220F-44F0-9AC8-
+77CA844D4A63.htm#DMCON019
+
+Gowda, D. (2017, May 20). Data Shuffling – Why it is important in Machine Learning & How to
+
+do it? LinkedIn. Retrieved from: https://www.linkedin.com/pulse/data-shuffling-why-important-
+machine-learning-how-do-deepak-n-gowda/
+
+Brownlee, J. (2016, Nov 18). What is a Confusion Matrix in Machine Learning. Machine
+
+Learning Mastery. Retrieved from: https://machinelearningmastery.com/confusion-matrix-
+machine-learning/
+
+Bird, R. (2018, Oct 25). Decision Trees – A simple way to visualize a decision. Medium.
+
+Retrieved from: https://medium.com/greyatom/decision-trees-a-simple-way-to-visualize-a-
+decision-dc506a403aeb
+
+Theodoridis, S. and Koutroumbas, K. (2009). “Classification Tree.” In Pattern Recognition.
+Retrieved from: https://www.sciencedirect.com/topics/computer-science/classification-tree
