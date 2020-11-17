@@ -71,3 +71,58 @@ randomization process performed well based on survival. In both the training and
 sets the survival rate is 41% and 40% respectively, showing fair randomization.
 
 <img width="547" alt="Screen Shot 2020-11-16 at 8 59 55 PM" src="https://user-images.githubusercontent.com/66921930/99334496-c6a20880-284e-11eb-9ae4-9e24b0b996b5.png">
+
+
+# Data Mining: Decision Trees
+
+Decision trees are an advantageous way to provide a data mining model that is easy to
+interpret as well as relatively accurate with moderately small user intervention (Oracle, 2017).
+Composed primarily of a root node, branches and leaf nodes, decision trees showcase attribute
+tests, outcomes and classifications in a readily consumable format. In R, the rpart library is used
+to build a decision tree model. Assignment of the outcome and predictors, the identification to
+build a classification or regression tree and additional parameters can all be built into the rpart
+function.
+In order to predict survival in Titanic passengers, the outcome is set to the variable
+“Survived” with the predictors set to the remaining 7 variables. The dataset is defined as the
+training set and the method is set to “class” in order to build a classification tree as seen in Figure
+5. The algorithm is then plotted to display the results in Figure 6.
+
+
+
+Mentioned previously, decision trees are made up of a root node, branches and leaf
+nodes. Each node in Figure 6 provides the predicted class, i.e. died or survived, the probability of
+survival and the percentage of observations in each node. The root node is what starts off the
+decision tree and in the case of this example provides the overall probability of survival of the
+training data set. From the root node, it is discerned that the survival rate of all the observations
+was 41%. The decision tree then starts building in decision branches that result in further nodes.
+
+
+
+The first decision branch from the root node takes into account the “Sex” variable, asking
+whether the passenger was male or female. If the left side of the decision tree is interpreted, the
+probabilities that can be taken are, if the passenger was male, they had a 21% survival rate and
+accounted for 62% of the observations (node 2). Progressing down the nodes, the next decision
+branch is based on the variable “Age”. If a passenger was male and age 9.5 or higher their
+survival rate was 18% and they accounted for 58% of the observations (node 4). The factors that
+determine likelihood of survival end after those two classifications. However, if a passenger was male and younger than 9.5, which was 4% of the observations (node 5), more factors impact the
+likelihood of survival, such as number of siblings. The very unfortunate consensus made from
+interpreting the left side of the decision tree is that as an older male passenger, chances of
+survival were highly unlikely.
+Looking at the right side of the data in Figure 6, it is very easy to see that there are many
+more factors that impacted a female’s survival rate, including their class, fare, their port of
+embarkation, and the number of parents or children they had onboard with them. Taking nodes 3
+and 7 into account, it can be interpreted that 74% of females survived and from there a 92%
+survival rate was determined for females who were in the upper or middle class. The consensus,
+wealthier females had a relatively high chance of survival.
+
+# Data Mining: Predictions
+
+The decision tree focused on utilizing the training dataset to showcase probabilities of
+survival based on various classifications. However, the original dataset is split into training and
+testing in order to allow for validation of accuracy in the model. The predict function in R is
+applied to the testing dataset utilizing the rpart model algorithm that was previously generated to
+predict the survival of passengers in the testing dataset. A confusion matrix is then applied to
+calculate the succession rate of the model. Confusion matrixes are a summary of the predicted
+results compared to the actual results within the test dataset (Brownlee, 2016). The R code
+applied, and output can be seen in Figure 7.
+
